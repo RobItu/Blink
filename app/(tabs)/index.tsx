@@ -3,11 +3,12 @@ import * as ImagePicker from 'expo-image-picker';
 import { useState } from 'react';
 import Button from '@/components/Button';
 import ImageViewer from '@/components/ImageViewer';
-import Camera from '@/components/QRReader';
+import { useRouter } from 'expo-router';
 
 const PlaceholderImage = require('@/assets/images/background-image.png');
 
 export default function Index() {
+const router = useRouter();
   const [selectedImage, setSelectedImage] = useState<string | undefined>(undefined);
 
   const pickImageAsync = async () => {
@@ -31,7 +32,7 @@ export default function Index() {
       </View>
       <View style={styles.footerContainer}>
         <Button theme="primary" label="Choose a photo" onPress={pickImageAsync} />
-        <Button label="Use Camera Instead" />
+        <Button theme="primary" label="Use Camera Instead"   onPress={() => router.push('/qr_reader')} />
       </View>
     </View>
   );
